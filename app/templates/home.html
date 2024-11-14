@@ -38,13 +38,13 @@
         {% else %} {% for img in images %}
         
         <div class="col">
-            {% if img.status == 'Alive' %}
-            <div class="card border-success mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
+            {% if img.status == 'Alive' %} <!-- Se condionantes para modificar una linea desde acá... -->
+            <div class="card border-success mb-3 ms-5" style="max-width: 540px;">  
             {% elif img.status == 'Dead' %}
-            <div class="card border-danger mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
+            <div class="card border-danger mb-3 ms-5" style="max-width: 540px;"> 
             {% else %}
-            <div class="card border-warning mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
-            {% endif %}
+            <div class="card border-warning mb-3 ms-5" style="max-width: 540px;"> 
+            {% endif %}                    <!-- ...hasta acá--> 
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="{{ img.url }}" class="card-img-top" alt="imagen">
