@@ -1,4 +1,5 @@
 <!--Este template no formaba parte del proyecto origina, se creo para implementar funciones nuevas-->
+{% extends 'header.html' %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
     
@@ -120,7 +121,7 @@
 
 </head>
 <body>
-    <h1>Buscador</h1>
+    <h1>Buscador Rick and Morty</h1>
     <div id="filters">
         <input type="text" id="name-filter" placeholder="Filtrar por nombre">
         <select name="" id="status-filter">
@@ -147,3 +148,4 @@
     
 </body>
 </html>
+{% endblock %}
