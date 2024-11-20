@@ -25,9 +25,10 @@
 
     <div class="d-flex justify-content-center" style="margin-bottom: 1%">
         <!-- Buscador del sitio -->
+        <!--Se quitó la funcion del buscador y se modificó el botón de buscar que ahora redirecciona un buscador personalizado-->
         <form class="d-flex" action="{% url 'buscar' %}" method="POST">
             {% csrf_token %}
-            <input class="form-control me-2" type="search" name="query" placeholder="Escribí una palabra" aria-label="Search">
+            
             <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
     </div>
@@ -38,13 +39,13 @@
         {% else %} {% for img in images %}
         
         <div class="col">
-            {% if img.status == 'Alive' %} <!-- Se condionantes para modificar una linea desde acá... -->
-            <div class="card border-success mb-3 ms-5" style="max-width: 540px;">  
+            {% if img.status == 'Alive' %}
+            <div class="card border-success mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
             {% elif img.status == 'Dead' %}
-            <div class="card border-danger mb-3 ms-5" style="max-width: 540px;"> 
+            <div class="card border-danger mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
             {% else %}
-            <div class="card border-warning mb-3 ms-5" style="max-width: 540px;"> 
-            {% endif %}                    <!-- ...hasta acá--> 
+            <div class="card border-warning mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
+            {% endif %}
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="{{ img.url }}" class="card-img-top" alt="imagen">
@@ -53,7 +54,7 @@
 
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h3 class="h4 card-title">{{ img.name }}</h3> <!--Se achicó la letra del título para que no rompa el cuadro en nombres grandes-->
+                            <h3 class="card-title">{{ img.name }}</h3>
                             <p class="card-text">
                                 <strong>
                                             {% if img.status == 'Alive' %} 🟢 {{ img.status }} 
@@ -62,8 +63,8 @@
                                             {% endif %}
                                         </strong>
                             </p>
-                            <p class="card-text"><small class="text-body-secondary">Última ubicación: {{ img.last_location }}</small></p>
-                            <p class="card-text"><small class="text-body-secondary">Episodio inicial: {{ img.first_seen }}</small></p>
+                            <p class="card-text"><small class="text-body-secondary">Episodio inicial: {{ img.last_location }}</small></p>
+                            <p class="card-text"><small class="text-body-secondary">Última ubicación: {{ img.first_seen }}</small></p>
                         </div>
                         {% if request.user.is_authenticated %}
                         <div class="card-footer text-center">

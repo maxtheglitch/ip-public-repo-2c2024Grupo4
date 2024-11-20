@@ -1,0 +1,149 @@
+<!--Este template no formaba parte del proyecto origina, se creo para implementar funciones nuevas-->
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and morty buscador</title>
+    <style type="text/css">
+        *{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body{
+            background-color: aliceblue;
+        }
+        
+        h1, #filters{
+            text-align: center;
+        }
+        
+        #filters input, #filters #status-filter, #gender-filter{
+            padding: 8px 16px;
+            margin: 10px;
+            border: 0px;
+            font-size: 18px;
+            border: 1px solid gainsboro;
+            border-radius: 5px;
+        
+        }
+        .container{
+            width: 80%;
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+        #characters{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .character-card{
+            width: 200px;
+            margin: 5px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+        }
+        
+        .character-card img{
+            width: 100%;
+        }
+       </style>
+       
+    
+    <script "text/javascript">
+        window.onload = function() {
+        
+        const characterEl = document.getElementById('characters');
+        const nameFilterEl = document.getElementById('name-filter');
+        const statusFilterEl = document.getElementById('status-filter');
+        const genderFilterEl = document.getElementById('gender-filter');
+
+        async function getCharacters(name,status,gender){
+            let url ='https://rickandmortyapi.com/api/character/';
+            if(name||status||gender){
+                url+='?';
+                if(name){
+                    url+=`name=${name}&`;
+                }
+                if(status){
+                    url+=`status=${status}&`;
+                }
+                if(gender){
+                    url+=`gender=${gender}`;
+                }
+            
+            }
+            const response = await fetch(url);
+            const data = await response.json();
+            return data.results;
+            
+
+        }
+        async function displayCharacters(name,status,gender) {
+            const characters = await getCharacters(name, status,gender);
+            characterEl.innerHTML='';
+            for(let character of characters){
+                const card = document.createElement('div');
+                card.classList.add('character-card');
+                //console.log(`cadena de caracteres ${character.name}`)
+                //console.log('cadena '+character.name)
+                card.innerHTML = `
+                    <img src="${character.image}"/>
+                    <h2> ${character.name} </h2>
+                    <p> Status: ${character.status}</p>
+                    <p> Especie: ${character.species}</p>
+                    <p> Genero: ${character.gender}</p>
+                    
+                `;
+                characterEl.appendChild(card);
+                
+            }
+        }
+        displayCharacters()
+
+        nameFilterEl.addEventListener('input', () => {
+            displayCharacters(nameFilterEl.value, statusFilterEl.value, genderFilterEl.value);
+        });
+        statusFilterEl.addEventListener('change', () => {
+            displayCharacters(nameFilterEl.value, statusFilterEl.value, genderFilterEl.value);
+        })
+        genderFilterEl.addEventListener('change', () => {
+            displayCharacters(nameFilterEl.value, statusFilterEl.value, genderFilterEl.value);
+        })
+    }
+    </script>
+
+</head>
+<body>
+    <h1>Buscador</h1>
+    <div id="filters">
+        <input type="text" id="name-filter" placeholder="Filtrar por nombre">
+        <select name="" id="status-filter">
+            <option value="">Filtrar por estado</option>
+            <option value="alive">Vivo</option>
+            <option value="dead">Muerto</option>
+            <option value="unknown">Estado desconocido</option>
+
+        </select>
+        <select name="" id="gender-filter">
+            <option value="">Filtrar por género</option>
+            <option value="female">Mujer</option>
+            <option value="male">Hombre</option>
+            <option value="unknown">Género desconocido</option>
+            <option value="genderless">Sin género</option>
+        </select>
+        
+
+    </div>
+    <div class="container">
+        <div id="characters"></div>
+        <!--personajes-->
+    </div>
+    
+</body>
+</html>

@@ -10,7 +10,7 @@ class Card:
         self.id = id
 
     def __str__(self):
-        return f'IMG URL: {self.title}, name: {self.name}, status: {self.status}, última ubicación: {self.last_location}, primera vez visto: {self.first_seen}, Usuario: {self.user}, Id: {self.id}'
+        return f'IMG URL: {self.title}, name: {self.name}, status: {self.status}, primera vez visto: {self.last_location}, última ubicación: {self.first_seen}, Usuario: {self.user}, Id: {self.id}'
     
     # método equals.
     def __eq__(self, other):

@@ -21,10 +21,8 @@ def search(request):
 
     # si el texto ingresado no es vacío, trae las imágenes y favoritos desde services.py,
     # y luego renderiza el template (similar a home).
-    if (search_msg != ''):
-        pass
-    else:
-        return redirect('home')
+    return render(request, 'buscar.html') #Se modificó esta línea para que redireccione a un buscador codeado por el grupo
+
 
 
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
@@ -43,4 +41,5 @@ def deleteFavourite(request):
 
 @login_required
 def exit(request):
-    pass
+    logout  (request)
+    return redirect('home')
