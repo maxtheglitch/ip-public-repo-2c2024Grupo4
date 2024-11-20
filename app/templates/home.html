@@ -1,7 +1,6 @@
 {% extends 'header.html' %} {% block content %}
 <main>
     <h1 class="text-center">Página principal Rick & Morty</h1> <!--Se modificó el título para que tenga coherencia con el hecho de que este html ya no tiene el buscador incorporado-->
-
     <div class="d-flex justify-content-end" style="margin-bottom: 1%; margin-right: 2rem;">
         <!-- Selector de página -->
         <nav aria-label="...">
@@ -39,13 +38,13 @@
         {% else %} {% for img in images %}
         
         <div class="col">
-            {% if img.status == 'Alive' %}
-            <div class="card border-success mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
+            {% if img.status == 'Alive' %} <!-- Se cambió el codigo desde acá--> 
+            <div class="card border-success mb-3 ms-5" style="max-width: 540px;"> 
             {% elif img.status == 'Dead' %}
-            <div class="card border-danger mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
+            <div class="card border-danger mb-3 ms-5" style="max-width: 540px;"> 
             {% else %}
-            <div class="card border-warning mb-3 ms-5" style="max-width: 540px;"> <!-- Agregamos success--> 
-            {% endif %}
+            <div class="card border-warning mb-3 ms-5" style="max-width: 540px;"> 
+            {% endif %} <!-- Hasta acá--> 
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="{{ img.url }}" class="card-img-top" alt="imagen">

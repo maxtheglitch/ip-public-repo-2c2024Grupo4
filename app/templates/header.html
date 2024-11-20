@@ -25,6 +25,9 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><strong>Galería</strong></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'buscador' %}">Buscador</a><!--Se agregó buscador al header para ir directo a buscar.html-->
+                    </li>
                     {% if request.user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'favoritos' %}">Favoritos</a>
