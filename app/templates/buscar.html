@@ -42,15 +42,39 @@
             justify-content: center;
         }
         
-        .character-card{
+        
+        .character-carda{
             width: 200px;
             margin: 5px;
             padding: 10px;
             background-color: white;
             border-radius: 8px;
+            border-style:solid;
+            border-width: px;
+            border-color: #2ecc71;
+        }
+        .character-cardd{
+            width: 200px;
+            margin: 5px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            border-style:solid;
+            border-width: px;
+            border-color: #CD5C5C	;
+        }
+        .character-cardu{
+            width: 200px;
+            margin: 5px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            border-style:solid;
+            border-width: px;
+            border-color: #f4d03f;
         }
         
-        .character-card img{
+        .character-carda img, .character-cardd img, .character-cardu img{
             width: 100%;
         }
        </style>
@@ -90,7 +114,7 @@
             characterEl.innerHTML='';
             for(let character of characters){
                 const card = document.createElement('div');
-                card.classList.add('character-card');
+                
                 //console.log(`cadena de caracteres ${character.name}`)
                 //console.log('cadena '+character.name)
                 card.innerHTML = `
@@ -101,6 +125,16 @@
                     <p> Genero: ${character.gender}</p>
                     
                 `;
+                if (character.status=='Alive'){
+                    card.classList.add('character-carda')
+                    console.log('yes');
+                }
+                else if (character.status=='Dead'){
+                    card.classList.add('character-cardd');
+                }
+                else if (character.status=='unknown'){
+                    card.classList.add('character-cardu');
+                }
                 characterEl.appendChild(card);
                 
             }
